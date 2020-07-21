@@ -1,4 +1,4 @@
-### Discord-BotDiv
+### Discord-Self_Bot
 Simples Bot De Divulgação Para O Discord
 
 ![Prévia](https://i.imgur.com/r3O0ezm.png)
