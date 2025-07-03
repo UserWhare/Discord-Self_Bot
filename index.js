@@ -1,45 +1,67 @@
-const Discord = require("discord.js");
+const Discord = require("discord.js-selfbot-v11");
+const fs = require("fs");
 const Enmap = require("enmap");
+
 const client = new Discord.Client();
 const config = require("./config.json");
-var token = config.token;
-var prefix = config.prefix;
+
+const token = config.token;
+const prefix = config.prefix;
 
 client.Comandos = new Enmap();
 
+// ========================
+//      Sistema de Comandos
+// ========================
 client.on("message", message => {
-  if (message.channel.type == "dm") return;
+  if (message.channel.type === "dm") return;
   if (message.author.bot) return;
   if (!message.content.startsWith(prefix)) return;
 
-  let command = message.content.split(" ")[0];
-  command = command.slice(prefix.length);
-
-  let args = message.content.split(" ").slice(1);
+  const args = message.content.slice(prefix.length).trim().split(/\s+/);
+  const command = args.shift().toLowerCase();
 
   try {
-    let commandFile = require(`./Comandos/${command}.js`);
+    const commandFile = require(`./Comandos/${command}.js`);
     commandFile.run(client, message, args);
   } catch (err) {
-    if (err.code == "MODULE_NOT_FOUND") return;
-    console.error("Error");
+    if (err.code !== "MODULE_NOT_FOUND") {
+      console.error(`[Erro ao executar o comando "${command}"]\n`, err);
+    }
   }
 });
 
+// ========================
+//        Evento de Login
+// ========================
 client.on("ready", () => {
-console.log(`==========================\n[${client.users.size}] ~ Usuários\n[${client.channels.size}] ~ Canais\n[${client.guilds.size}] ~ Servidores\n==========================\n${client.user.username} ~ ID: ${client.user.id}\n[Pronto Pra Divulgar]`);
+  console.clear();
+  console.log(`==========================
+Usuários   : ${client.users.size}
+Canais     : ${client.channels.size}
+Servidores : ${client.guilds.size}
+==========================
+${client.user.username}
+ID: ${client.user.id}
+Status: Online
+==========================`);
 
-let status = [
-  {name: `WORLD$TAR MONEY`, type: `LISTENING`},
-  {name: `${client.users.size} Usuários`, type:`WATCHING`},
-  {name: `Convites`, type: `PLAYING`}
-]
+  const statusList = [
+    { name: `WORLD$TAR MONEY`, type: "LISTENING" },
+    { name: `${client.users.size} Usuários`, type: "WATCHING" },
+    { name: `User#0000`, type: "PLAYING" }
+  ];
 
-  function setStatus() {
-    let randomStatus = status[Math.floor(Math.random() * status.length)];
-    client.user.setPresence({ game: randomStatus });
-  }
-  setStatus();
-  setInterval(() => setStatus(), 10000);
+  const setRandomStatus = () => {
+    const status = statusList[Math.floor(Math.random() * statusList.length)];
+    client.user.setPresence({ game: status });
+  };
+
+  setRandomStatus();
+  setInterval(setRandomStatus, 10000);
 });
+
+// ========================
+//           Login
+// ========================
 client.login(token);
