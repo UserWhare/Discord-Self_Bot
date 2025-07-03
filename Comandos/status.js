@@ -1,34 +1,34 @@
-const Discord = require("discord.js");
+const Discord = require("discord.js-selfbot-v11");
 
 exports.run = async (client, message, args) => {
-  let uptime = hrs+mins+sec
-  let string = ' ';
-  var hrs = Math.round(client.uptime / (1000 * 60 * 60)) + " Horas,"
-  var mins = " " + Math.round(client.uptime / (1000 * 60)) % 60 + " Minutos,"
-  var sec = Math.round(client.uptime / 1000) % 60 + " Segundos"
-  const ksp = "󠂪󠂪"
+  // Calcula uptime
+  const totalSeconds = Math.floor(client.uptime / 1000);
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
 
-  let totalSeconds = (client.uptime / 1000);
-  let days = Math.floor(totalSeconds / 86400);
-  let hours = Math.floor(totalSeconds / 3600);
-  totalSeconds %= 3600;
-  let minutes = Math.floor(totalSeconds / 60);
-  let seconds = totalSeconds % 60
-  
-  if (hrs == "0 Horas,") hrs = ""
-  if (mins == " 0 Minutos, ") mins = ""
-    
-    message.delete().catch(O_o=>{});
-    client.guilds.forEach(guild => {
-    string += `${guild.name} ` + '\n';})
+  // Gera lista de servidores
+  const guildNames = client.guilds.map(guild => guild.name).join('\n');
 
-    let botembed = new Discord.RichEmbed()
-        .setColor("#00ff44")
-        .addField("**Tempo online:**", `**\`\`\`Dias: ${days} | Horas: ${hours} | Minutos: ${minutes} | Segundos: ${seconds.toFixed(0)}\`\`\`**`, false)
-        .addField("**Atualmente Em:**", `**\`\`\` ${client.guilds.size} Servidores\`\`\`**`, false)
-        .addField(`**Total De Membros Em ${client.guilds.size} Servidores:**`, `**\`\`\` ${client.users.size} Membros\`\`\`**`, false)
-        .setTimestamp()
-        .setThumbnail("https://i.imgur.com/5bS1c97.png")
-        .setFooter(`• Comando Solicitado Por: ${message.author.username}`, message.author.avatarURL)
-    message.channel.send(botembed).then(msg => msg.delete(30000))
-}
+  // Tenta deletar a mensagem original
+  message.delete().catch(() => {});
+
+  // Monta embed
+  const embed = new Discord.RichEmbed()
+    .setColor("#00ff44")
+    .addField("⏱️ Tempo online:", `\`\`\`Dias: ${days} | Horas: ${hours} | Minutos: ${minutes} | Segundos: ${seconds}\`\`\``)
+    .addField("🌐 Servidores conectados:", `\`\`\`${client.guilds.size}\`\`\``)
+    .addField(`👥 Total de membros em todos os servidores:`, `\`\`\`${client.users.size}\`\`\``)
+    .addField("📋 Lista de servidores:", guildNames.length > 1024 ? "Muitos servidores para listar." : `\`\`\`${guildNames}\`\`\``)
+    .setTimestamp()
+    .setFooter(`Solicitado por: ${message.author.username}`, message.author.avatarURL);
+
+  // Envia o embed e apaga depois de 30 segundos
+  const sentMessage = await message.channel.send(embed);
+  setTimeout(() => sentMessage.delete().catch(() => {}), 30000);
+};
+
+exports.help = {
+  name: "servidores"
+};
