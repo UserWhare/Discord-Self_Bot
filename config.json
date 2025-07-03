@@ -1,6 +1,5 @@
 {
-    "token": "Token_Do_Bot",
-    "dono": "Seu_ID",
-    "prefix": "!"
-  }
-  
+  "token": "SEU_TOKEN_AQUI",
+  "dono": "Seu_ID",
+  "prefix": "!"
+}
