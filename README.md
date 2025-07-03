@@ -61,7 +61,7 @@ Um **selfbot** simples para **divulgação automática no Discord**, com funcion
 ┃ ┣ 📜 nome.js
 ┃ ┣ 📜 status.js
 ┃ ┣ 📜 div.js
-┃ ┗ 📜 divs.js
+┃ ┗ 📜 divembled.js
 ┣ 📜 config.json
 ┣ 📜 index.js
 ┣ 📜 README.md
