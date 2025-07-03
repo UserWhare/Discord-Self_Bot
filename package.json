@@ -1,16 +1,19 @@
 {
-  "name": "BotDiv",
+  "name": "DIV",
   "version": "1.0.0",
-  "description": "Bot De Divulgação",
+  "description": "Selfbot Discord",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "YusukeNickAir",
+  "author": "Yusuke",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^11.5.1",
-    "enmap": "^5.3.3"
+    "discord.js": "11.5.8",
+    "discord.js-selfbot-v11": "11.5.1",
+    "enmap": "6.0.5",
+    "express": "5.1.0"
   }
 }
