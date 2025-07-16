@@ -18,7 +18,7 @@ Um **selfbot** simples para **divulgação automática no Discord**, com funcion
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seuusuario/discord-self-bot
+   git clone https://github.com/UserWhare/discord-self-bot
    cd discord-self-bot
    ```
 
