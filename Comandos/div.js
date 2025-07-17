@@ -40,7 +40,7 @@ exports.run = async (client, message, args) => {
   talkedRecently.add(message.author.id);
   setTimeout(() => {
     talkedRecently.delete(message.author.id);
-  }, 600000); // 10 minutos de cooldown
+  }, 600000);
 
   const servidores = client.guilds.size;
   const usuarios = client.users.size;
@@ -60,7 +60,6 @@ exports.run = async (client, message, args) => {
 
   message.channel.send(embedStatus).catch(() => {});
 
-  // Enviar mensagem com delay para evitar spam
   for (const user of client.users.array()) {
     if (user.bot) continue;
 
@@ -71,6 +70,6 @@ exports.run = async (client, message, args) => {
       console.log(`❌ Falha ao enviar para: ${user.username}`);
     }
 
-    await delay(2000); // 2 segundos de intervalo entre envios para evitar flood
+    await delay(2000);
   }
 };
