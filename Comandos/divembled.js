@@ -11,12 +11,10 @@ module.exports.run = async (client, message, args) => {
 
   const servidores = client.guilds.size;
 
-  // Filtra apenas usuários com status online, dnd ou idle — evitando offline para não spam
   const onlineUsers = client.users.filter(u => 
     ["online", "dnd", "idle"].includes(u.presence.status)
   );
 
-  // Cria embed da mensagem que será enviada
   const mensagem = new Discord.RichEmbed()
     .setTitle("**__Geeks Night__**")
     .setDescription("**Servidor De Entretenimento E Diversão**")
@@ -29,13 +27,10 @@ module.exports.run = async (client, message, args) => {
 
   message.channel.send(`📢 Enviando mensagem para ${servidores} servidores e ${onlineUsers.size} membros online/dnd/ausentes.`);
 
-  // Envia DM para cada usuário filtrado
   onlineUsers.forEach(async user => {
     try {
       await user.send(mensagem);
     } catch (err) {
-      // Falha comum: usuário bloqueou DMs ou não está aceitando mensagens de servidor
-      // Apenas ignora e continua
     }
   });
 };
