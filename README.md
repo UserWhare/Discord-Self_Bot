@@ -1,82 +1,102 @@
-# 🤖 Discord-Self-Bot
+<div align="center">
 
-Selfbot simples para **divulgação automática** no Discord, com comandos úteis para personalização e interação.
+# Discord Self Bot
 
-> ⚠️ **Atenção:** Selfbots violam os Termos de Serviço do Discord. Use por sua conta e risco.
+**Projeto legado de self bot para Discord, mantido como estudo e arquivo pessoal.**
 
----
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Node.js](https://img.shields.io/badge/Node.js-Legacy-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-2ea44f?style=for-the-badge)
 
-## 📦 Módulos
-
-- [`discord.js-selfbot-v11`](https://www.npmjs.com/package/discord.js-selfbot-v11)
-- [`enmap`](https://www.npmjs.com/package/enmap)
-- [`fs`](https://nodejs.org/api/fs.html)
+</div>
 
 ---
 
-## ⚙️ Instalação
+> Self bots não são suportados pelo Discord e podem resultar em punições na conta. Este repositório é mantido como projeto legado e deve ser usado por conta e risco.
 
-1. Clone o projeto:
-```bash
-git clone https://github.com/UserWhare/discord-self-bot
-cd discord-self-bot
-```
+## Recursos
 
-2. Instale as dependências:
+- Sistema simples de comandos
+- Alteração de nome e avatar
+- Informações de status e uptime
+- Presença rotativa
+- Configuração por `.env`
+- Divulgação por texto ou embed para uma lista explícita de destinatários
+- Intervalo configurável entre envios
+- Logs básicos no terminal
+
+Os comandos de divulgação usam somente os IDs definidos manualmente em `RECIPIENT_IDS`.
+
+## Configuração
+
+Instale as dependências:
+
 ```bash
 npm install
 ```
 
-3. Configure o `config.json`:
-```json
-{
-  "token": "SEU_TOKEN_AQUI",
-  "dono": "SEU_ID",
-  "prefix": "!"
-}
+Copie `.env.example` para `.env` e configure:
+
+```env
+DISCORD_TOKEN=SEU_TOKEN_AQUI
+OWNER_ID=SEU_ID
+PREFIX=!
+RECIPIENT_IDS=ID_1,ID_2
+BROADCAST_DELAY_MS=2000
+MAX_RECIPIENTS=20
 ```
 
----
+Depois execute:
 
-## ✅ Comandos
-
-| Comando   | Função                                                  |
-|-----------|----------------------------------------------------------|
-| `!nome`   | Troca o nome do bot                                      |
-| `!avatar` | Troca o avatar                                           |
-| `!status` | Mostra tempo online, membros e servidores                |
-| `!div`    | Envia divulgação para todos os DMs disponíveis           |
-| `!divs`   | Envia embed com informações para todos os usuários       |
-
-> Prefixo padrão: `!` (ajustável no `config.json`)
-
----
-
-## 📂 Estrutura
-
-```
-📦 discord-self-bot
-┣ 📂 Comandos
-┃ ┣ 📜 avatar.js
-┃ ┣ 📜 nome.js
-┃ ┣ 📜 status.js
-┃ ┣ 📜 div.js
-┃ ┗ 📜 divembled.js
-┣ 📜 config.json
-┣ 📜 index.js
-┣ 📜 README.md
-┗ 📜 package.json
+```bash
+npm start
 ```
 
+## Comandos
+
+| Comando | Função |
+| --- | --- |
+| `!help` | Lista os comandos |
+| `!status` | Mostra informações da sessão |
+| `!nome <nome>` | Altera o nome da conta |
+| `!avatar <url>` | Altera o avatar |
+| `!div <mensagem>` | Envia texto aos destinatários configurados |
+| `!divembed <título> \| <mensagem>` | Envia um embed aos destinatários configurados |
+
+## Estrutura
+
+```text
+Discord-Self_Bot/
+├── commands/
+│   ├── avatar.js
+│   ├── div.js
+│   ├── divembed.js
+│   ├── help.js
+│   ├── nome.js
+│   └── status.js
+├── src/
+│   ├── config.js
+│   ├── logger.js
+│   └── utils.js
+├── .env.example
+├── .gitignore
+├── index.js
+├── package.json
+└── README.md
+```
+
+## Projeto legado
+
+A base `discord.js-selfbot-v11` foi preservada de propósito. Migrar este projeto para uma stack atual mudaria a natureza do repositório e provavelmente exigiria uma implementação não oficial diferente.
+
+## Licença
+
+Distribuído sob a [Licença MIT](LICENSE).
+
 ---
 
-## 🔐 Aviso
+<div align="center">
 
-Projeto para **fins educacionais e testes**.  
-Não promova spam. Use com responsabilidade.
+Feito por [UserWhare](https://github.com/UserWhare)
 
----
-
-## 💻 Autor
-
-Feito por [Yusuke](https://github.com/UserWhare)
+</div>

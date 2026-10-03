@@ -1,19 +1,16 @@
 {
-  "name": "DIV",
-  "version": "1.0.0",
-  "description": "Selfbot Discord",
+  "name": "discord-self-bot-legacy",
+  "version": "2.0.0",
+  "description": "Projeto legado de self bot para Discord.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "check": "node --check index.js && node --check src/config.js && node --check src/logger.js && node --check src/utils.js && node --check commands/help.js && node --check commands/avatar.js && node --check commands/nome.js && node --check commands/status.js && node --check commands/div.js && node --check commands/divembed.js"
   },
-  "keywords": [],
-  "author": "Yusuke",
-  "license": "ISC",
+  "author": "UserWhare",
+  "license": "MIT",
   "dependencies": {
-    "discord.js": "11.5.8",
     "discord.js-selfbot-v11": "11.5.1",
-    "enmap": "6.0.5",
-    "express": "5.1.0"
+    "dotenv": "^16.4.7"
   }
 }
