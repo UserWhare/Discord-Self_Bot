@@ -85,10 +85,6 @@ Discord-Self_Bot/
 └── README.md
 ```
 
-## Projeto legado
-
-A base `discord.js-selfbot-v11` foi preservada de propósito. Migrar este projeto para uma stack atual mudaria a natureza do repositório e provavelmente exigiria uma implementação não oficial diferente.
-
 ## Licença
 
 Distribuído sob a [Licença MIT](LICENSE).
